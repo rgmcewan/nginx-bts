@@ -1,4 +1,4 @@
-FROM node:12.18.2 as build
+FROM node:18 as build
 
 ARG REACT_APP_SERVICES_HOST=/services/m
 
@@ -11,8 +11,7 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn build
-
+RUN NODE_OPTIONS=--openssl-legacy-provider yarn build
 
 FROM nginx
 
